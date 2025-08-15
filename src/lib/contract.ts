@@ -223,7 +223,7 @@ export class ContractService extends EventEmitter {
         txHash: receipt.hash,
         gasUsed: receipt.gasUsed,
         effectiveGasPrice: receipt.gasPrice || gasEstimate.gasPrice,
-        totalCost: receipt.gasUsed * (receipt.gasPrice || gasEstimate.gasPrice),
+        totalCost: receipt.gasUsed.mul(receipt.gasPrice || gasEstimate.gasPrice),
         blockNumber: receipt.blockNumber
       }
       
