@@ -5,23 +5,14 @@ import { Header } from "@/components/Header"
 import { ArtworkUpload } from "@/components/ArtworkUpload"
 import { ArtworkGrid } from "@/components/ArtworkGrid"
 
-// Extend Window interface for ethereum
-declare global {
-  interface Window {
-    ethereum?: {
-      request: (args: { method: string }) => Promise<string[]>
-    }
-  }
-}
-
 export default function ArtistPage() {
   const [isConnected, setIsConnected] = useState(false)
   const [walletAddress, setWalletAddress] = useState('')
 
   const connectWallet = async () => {
     try {
-      if (typeof window !== 'undefined' && window.ethereum) {
-        const accounts = await window.ethereum.request({
+      if (typeof window !== 'undefined' && (window as any).ethereum) {
+        const accounts = await (window as any).ethereum.request({
           method: 'eth_requestAccounts'
         })
         
