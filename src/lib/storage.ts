@@ -411,7 +411,7 @@ class ResilientStorageService extends EventEmitter implements StorageService {
 }
 
 // Export the storage service - will use real Web3.Storage if token is available
-export const storageService: StorageService = new Web3StorageService()
+export const storageService: StorageService = new ResilientStorageService()
 
 // Helper function to convert IPFS URL to HTTP gateway URL
 export function ipfsToHttpUrl(ipfsUrl: string): string {
